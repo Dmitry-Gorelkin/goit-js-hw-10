@@ -12,10 +12,10 @@ const refs = {
 };
 
 function onInput(e) {
-  const country = e.target.value;
+  const country = e.target.value.trim();
   clear();
 
-  if (!country.trim()) {
+  if (!country) {
     return;
   }
 
