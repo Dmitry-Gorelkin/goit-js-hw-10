@@ -1,7 +1,7 @@
 import './css/styles.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import debounce from 'lodash.debounce';
-// import fetchCountries from './js/fetchCountries';
+import fetchCountries from './js/fetchCountries';
 
 const DEBOUNCE_DELAY = 500;
 
@@ -14,21 +14,12 @@ const refs = {
 function onInput(e) {
   const country = e.target.value;
   clear();
+
   if (!country.trim()) {
     return;
   }
-  fetchCountries(country);
-}
 
-function fetchCountries(c) {
-  fetch(`https://restcountries.com/v2/name/${c}?fields=name,capital,population,flags,languages`)
-    .then(r => r.json())
-    .then(data => {
-      if (data.status === 404) {
-        throw new Error(response.status);
-      }
-      return data;
-    })
+  fetchCountries(country)
     .then(data => {
       if (data.length > 10) {
         Notify.info('Too many matches found. Please enter a more specific name.', {
